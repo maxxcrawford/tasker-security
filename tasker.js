@@ -3,8 +3,9 @@ var sec = true,
 	peb = false,
 	car = false;
 
-function enableSec(state) {
+// Security Function
 
+function enableSec(state) {
 	if (!peb || !car || !home) {
 		sec = true;
 		state = !state;
@@ -15,10 +16,9 @@ function enableSec(state) {
 
 function disableSec() {
 	sec = false;
-	// if (!peb || !car || !home){
-	// 	sec = false;
-	// }
 }
+
+// State Specific Functions
 
 var homeSec = {
 	connect: function() {
@@ -50,6 +50,8 @@ var carSec = {
 	}
 };
 
+// HTML Triggers
+
 var homeBtn = $('#homeToggle'),
 	pebBtn = $('#pebToggle'),
 	carBtn = $('#carToggle'),
@@ -57,6 +59,8 @@ var homeBtn = $('#homeToggle'),
 	homeStatus = $('#homeStatus'),
 	pebStatus = $('#pebStatus'),
 	carStatus = $('#carStatus');
+
+// Updates Status of Each State
 
 function statusPrint() {
 	secStatus.text(sec);
