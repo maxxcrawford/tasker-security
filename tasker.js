@@ -1,21 +1,23 @@
-var sec = true,
+var security = true,
 	home = false,
 	peb = false,
 	car = false;
 
 // Security Function
 
-function enableSec(state) {
-	if (!peb || !car || !home) {
-		sec = true;
-		state = !state;
+function enableSec() {
+	if (peb || home || car){
+		// SKIP
+		console.log("sec.skip");
 	} else {
-		console.log('enableSec--fail');
+		console.log("sec.true");
+		security = true;
+
 	}
 }
 
 function disableSec() {
-	sec = false;
+	security = false;
 }
 
 // State Specific Functions
@@ -26,7 +28,8 @@ var homeSec = {
 		disableSec();
 	},
 	exit: function() {
-		enableSec(home);
+		enableSec();
+		home = false;
 	}
 };
 
@@ -36,7 +39,8 @@ var pebbleSec = {
 		disableSec();
 	},
 	exit: function() {
-		enableSec(peb);
+		enableSec();
+		peb = false;
 	}
 };
 
@@ -46,7 +50,8 @@ var carSec = {
 		disableSec();
 	},
 	exit: function() {
-		enableSec(car);
+		enableSec();
+		car = false;
 	}
 };
 
@@ -63,7 +68,7 @@ var homeBtn = $('#homeToggle'),
 // Updates Status of Each State
 
 function statusPrint() {
-	secStatus.text(sec);
+	secStatus.text(security);
 	homeStatus.text(home);
 	pebStatus.text(peb);
 	carStatus.text(car);
